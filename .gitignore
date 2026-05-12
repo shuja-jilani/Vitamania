@@ -1,0 +1,21 @@
+# IntelliJ
+.idea/
+*.iml
+
+# Logs
+logs/
+*.log
+
+# Environment files
+.env
+
+# Backend
+vitamania-backend/target/
+
+# Frontend
+vitamania-frontend/node_modules/
+vitamania-frontend/.next/
+
+# OS
+.DS_Store
+Thumbs.db
