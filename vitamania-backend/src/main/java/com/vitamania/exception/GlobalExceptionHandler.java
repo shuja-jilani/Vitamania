@@ -1,5 +1,6 @@
 package com.vitamania.exception;
 
+import lombok.extern.slf4j.Slf4j;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.time.Instant;
 
+@Slf4j
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
@@ -25,6 +27,7 @@ public class GlobalExceptionHandler {
                 request.getRequestURI()
         );
 
+        log.error("Resource not found exception occurred: {}", ex.getMessage());
         return ResponseEntity.status(HttpStatus.NOT_FOUND)
                 .body(errorResponse);
     }
@@ -43,6 +46,7 @@ public class GlobalExceptionHandler {
                 request.getRequestURI()
         );
 
+        log.error("Unhandled exception occurred", ex);
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                 .body(errorResponse);
     }
