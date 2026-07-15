@@ -1,5 +1,7 @@
 package com.vitamania.exception;
 
+import com.vitamania.shared.MessageResolver;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
@@ -11,7 +13,10 @@ import java.time.Instant;
 
 @Slf4j
 @RestControllerAdvice
+@RequiredArgsConstructor
 public class GlobalExceptionHandler {
+
+    private final MessageResolver messageResolver;
 
     @ExceptionHandler(ResourceNotFoundException.class)
     public ResponseEntity<ErrorResponse> handleResourceNotFoundException(
@@ -23,7 +28,7 @@ public class GlobalExceptionHandler {
                 Instant.now(),
                 HttpStatus.NOT_FOUND.value(),
                 HttpStatus.NOT_FOUND.getReasonPhrase(),
-                ex.getMessage(),
+                messageResolver.getMessage(ex.getErrorCode()),
                 request.getRequestURI()
         );
 

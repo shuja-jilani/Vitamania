@@ -1,5 +1,6 @@
 package com.vitamania.products.controller;
 
+import com.vitamania.exception.ErrorCode;
 import com.vitamania.exception.ResourceNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -15,7 +16,9 @@ public class TestController {
 
         log.info("Testing exception endpoint");
 
-        throw new ResourceNotFoundException("Product not found");
+        throw new ResourceNotFoundException(
+                ErrorCode.PRODUCT_NOT_FOUND
+        );
     }
 
     @GetMapping("/admin/test")
