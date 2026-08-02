@@ -7,7 +7,8 @@ public enum ErrorCode {
 
     PRODUCT_NOT_FOUND("error.product.not.found"),
     INTERNAL_SERVER_ERROR("error.internal.server"),
-    ACCESS_DENIED("error.access.denied");
+    ACCESS_DENIED("error.access.denied"),
+    UNAUTHORIZED("error.unauthorized");
 
     private final String messageKey;
 
